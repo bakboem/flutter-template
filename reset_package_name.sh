@@ -26,7 +26,9 @@ sed -i "" "s/^name: .*/name: $PROJECT_NAME/" pubspec.yaml
 sed -i "" "s/$OLD_PACKAGE_NAME/$NEW_PACKAGE_NAME/" android/app/src/main/AndroidManifest.xml
 sed -i "" "s/$OLD_PACKAGE_NAME/$NEW_PACKAGE_NAME/" android/app/src/debug/AndroidManifest.xml
 sed -i "" "s/$OLD_PACKAGE_NAME/$NEW_PACKAGE_NAME/" android/app/src/profile/AndroidManifest.xml
-sed -i "" "s/applicationId \".*\"/applicationId \"$NEW_PACKAGE_NAME\"/" android/app/build.gradle
+
+# 替换 Android 的 build.gradle 文件
+sed -i "" "s/$OLD_PACKAGE_NAME/$NEW_PACKAGE_NAME/" android/app/build.gradle
 
 # 替换 Android 包路径
 NEW_PATH=$(echo $NEW_PACKAGE_NAME | tr '.' '/')
@@ -39,11 +41,19 @@ if [ -d android/app/src/main/kotlin/$OLD_PATH ]; then
   rm -rf android/app/src/main/kotlin/$OLD_PATH
 fi
 
-# 替换 Kotlin 文件中的 package 声明
-find android/app/src/main/kotlin/$NEW_PATH -type f -name "*.kt" -exec sed -i "" "s/^package $OLD_PACKAGE_NAME/package $NEW_PACKAGE_NAME/" {} +
+# 替换所有 .kt 文件中的 package 和包名字符串
+find android/app/src/main/kotlin/$NEW_PATH -type f -name "*.kt" -exec sed -i "" "s/$OLD_PACKAGE_NAME/$NEW_PACKAGE_NAME/g" {} +
 
-# 替换 Dart 文件中的 import 路径和 package 名
+# 替换 Dart 文件中的 import 路径和包名
 find lib -type f -name "*.dart" -exec sed -i "" "s/package:$OLD_DART_PACKAGE/package:$PROJECT_NAME/g" {} +
+find lib -type f -name "*.dart" -exec sed -i "" "s/$OLD_PACKAGE_NAME/$NEW_PACKAGE_NAME/g" {} +
+
+# 替换特定文件 lib/config/app_config.dart 中的包名
+APP_CONFIG_FILE="lib/config/app_config.dart"
+if [ -f $APP_CONFIG_FILE ]; then
+  sed -i "" "s/$OLD_PACKAGE_NAME/$NEW_PACKAGE_NAME/g" $APP_CONFIG_FILE
+  sed -i "" "s/package:$OLD_DART_PACKAGE/package:$PROJECT_NAME/g" $APP_CONFIG_FILE
+fi
 
 # 替换 iOS 包名
 sed -i "" "s/$OLD_PACKAGE_NAME/$NEW_PACKAGE_NAME/" ios/Runner.xcodeproj/project.pbxproj
@@ -56,8 +66,9 @@ if [ -f $APP_DELEGATE ]; then
   sed -i "" "s/$OLD_PACKAGE_NAME/$NEW_PACKAGE_NAME/g" $APP_DELEGATE
 fi
 
-# 清理多余文件和目录
-rm -rf example/template # 清理模板中多余的 example 文件夹
-
 # 打印完成信息
 echo "New project $PROJECT_NAME created with package name $NEW_PACKAGE_NAME!"
+
+
+# icon
+dart run flutter_launcher_icons -f '/Users/bakbeom/work/codera/flutter-template/icons_launcher.yaml'
