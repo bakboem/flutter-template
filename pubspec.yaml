@@ -1,0 +1,59 @@
+name: template
+description: "A new Flutter project."
+
+publish_to: 'none' 
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.6.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+  shared_preferences: ^2.3.5
+  connectivity_plus: ^6.1.1
+  device_info_plus: ^11.2.0
+  package_info_plus: ^8.1.2
+  json_serializable: ^6.9.2
+  json_annotation: ^4.9.0
+  tuple: ^2.0.2
+  path_provider: ^2.1.5
+  dio: ^5.7.0
+  provider: ^6.1.2
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+  permission_handler: ^11.3.1
+  easy_localization: ^3.0.7
+  flutter_svg: ^2.0.17
+  fluttertoast: ^8.2.10
+  mobile_device_identifier: ^0.0.3
+  app_settings: ^5.1.1
+  flutter_native_splash: ^2.4.4
+  flutter_screenutil: ^5.9.3
+  flutter_background_service: ^5.1.0
+  synchronized: ^3.3.0+3
+  logger: ^2.5.0
+  flutter_foreground_task: ^8.17.0
+  location: ^6.0.2
+  flutter_local_notifications: ^18.0.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  build_runner: ^2.4.14
+  flutter_lints: ^5.0.0
+  flutter_launcher_icons: "^0.14.2"
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/location/
+    - assets/images/
+
+flutter_native_splash:
+  background_image: "assets/images/background.png"
+  android_12:
+     image: assets/images/background.png
+     android_gravity: fill

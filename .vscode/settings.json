@@ -1,0 +1,23 @@
+{
+    "java.format.settings.url": ".vscode/java-formatter.xml",
+    "java.autobuild.enabled": true,
+    "java.import.gradle.enabled": true,
+    "java.import.maven.enabled": false,
+    "java.import.gradle.java.home": "/Library/Java/JavaVirtualMachines/temurin-17.jdk/Contents/Home",
+    "kotlin.languageServer.enabled": true,
+    "kotlin.debugAdapter.enabled": true,
+    "kotlin.compiler.jvm.target": "17",
+    "kotlin.codegen.enabled": true,
+    "kotlin.java.home":"/Library/Java/JavaVirtualMachines/temurin-17.jdk/Contents/Home",
+    "java.jdt.ls.java.home": "/Library/Java/JavaVirtualMachines/temurin-17.jdk/Contents/Home",
+    "java.configuration.runtimes":[
+        {
+            "name": "JavaSE-17",
+            "path": "/Library/Java/JavaVirtualMachines/temurin-17.jdk/Contents/Home",
+            "default": true
+          }
+    ],
+    "dart.flutterSdkPath": "/Users/bakbeom/install/flutter",
+    "dart.sdkPath": "/Users/bakbeom/install/flutter/bin/cache/dart-sdk",
+    "editor.hover.enabled": true
+}

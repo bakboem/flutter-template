@@ -1,0 +1,1 @@
+emulator -avd Pixel_9_Pro_XL_API_35
