@@ -19,7 +19,7 @@ void main() async {
   var binding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: binding);
   FlutterForegroundTask.initCommunicationPort();
-  EasyLocalization.ensureInitialized();
+  await EasyLocalization.ensureInitialized();
   await ScreenUtil.ensureScreenSize();
   await CacheService.init();
   await HiveService.init();

@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'dart:math';
+import 'package:flutter_background_service/flutter_background_service.dart';
 import 'package:template/common/function/common_function.dart';
 import 'package:template/common/view/base_app_dialog.dart';
 import 'package:template/services/permission_service.dart';
@@ -22,7 +23,7 @@ class _AuthPageState extends State<AuthPage> {
   @override
   void initState() {
     super.initState();
-    _initForgroundService();
+    // _initForgroundService();
   }
 
   void _initForgroundService() {
@@ -53,6 +54,7 @@ class _AuthPageState extends State<AuthPage> {
   Widget build(BuildContext context) {
     var isLogedin = Random().nextBool();
     FlutterNativeSplash.remove();
+    FlutterBackgroundService().startService();
     return Scaffold(
       backgroundColor: AppColors.whiteText,
       body: Stack(
